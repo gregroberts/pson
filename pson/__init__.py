@@ -5,4 +5,4 @@ __author__ = 'Imran Ghory'
 __license__ = 'MIT'
 __copyright__ = 'Copyright 2014 Imran Ghory'
 
-from .pson import pathquery
+from .pson import pathquery, findpath
