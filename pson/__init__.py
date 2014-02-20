@@ -5,4 +5,5 @@ __author__ = 'Imran Ghory'
 __license__ = 'MIT'
 __copyright__ = 'Copyright 2014 Imran Ghory'
 
-from .pson import pathquery, findpath
+from .pson import pathquery, findpath, pathparser
+from .crawl import crawlobjector, query
