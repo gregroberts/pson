@@ -63,3 +63,4 @@ a = ['a',{'c':{'b':'b'}},{'c':['a','b','b']},'d']
 
 if __name__ == '__main__':
 	print list(flatten(findpath(a,'b')))
+	#returns ['1.c.b', '2.c.1', '2.c.2']
