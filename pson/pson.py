@@ -63,3 +63,44 @@ def fp(pson, target, path = ''):
 def findpath(pson,target):
 	return list(flatten(fp(pson,target)))
 
+
+
+def replace_path(pson, target, new_val, seperator):
+	#no idea if this is stable!!! let's hope so!!!!!
+	if isinstance(target, str) or isinstance(target, unicode):
+		target = pathparser(target, separator =seperator)
+	if isinstance(pson, list):
+		return [replace_path(a,target[1:], new_val, seperator) for a in pson]
+	elif isinstance(pson, dict):
+		if len(target) > 1:
+			res = {}
+			for a, b in pson.items():
+				if a == target[0]:
+					res[a] = replace_path(b,target[1:], new_val, seperator)
+				else:
+					res[a] = b
+			return res
+		elif len(target) == 1:
+			res = {}
+			for a, b in pson.items():
+				if a == target[0]:
+					res[a] = new_val
+				else: 
+					res[a] = b
+			return res
+	elif isinstance(pson, str) or isinstance(pson, unicode):
+		return pson
+
+
+
+if __name__ == '__main__':
+	a= {
+		'b':{
+			'c':{
+				'd':1
+			},
+			'e':[{'f':1},{'f':1}]
+
+		}
+	}
+	print replace(a,'b.e.f', 'REPLACE!!', '.')
